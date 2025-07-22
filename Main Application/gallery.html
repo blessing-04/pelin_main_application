@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Gallery</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(236, 72, 153, 0.8), rgba(190, 24, 93, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            items-center: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: #ec4899;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ec4899, #be185d);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+        }
+  </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-md fixed w-full top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="media/logo.png" alt="Luxe Salon Logo" class="h-10 w-auto object-contain" />
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-rose-600 px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="#gallery" class="nav-link text-gray-700 hover:text-rose-600 px-3 py-2 text-sm font-medium">Gallery</a> 
+                        <button id="bookNow" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">Book Now</button> 
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-rose-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-rose-600">Home</a>
+                <a href="gallery" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-rose-600">Gallery</a>
+                <button id="bookNow" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">Book Now</button>
+            </div>
+        </div>
+    </nav>
+
+  <!-- GALLERY SECTION START -->
+  <!-- Paste the full <section id="gallery">...</section> content here (already provided above) -->
+  <!-- You can now just reuse the content from the 'Extended Gallery Page' document -->
+  <!-- Here's a placeholder for now: -->
+  <section id="gallery" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-4">Our Gallery</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Explore our stunning work and beautiful salon atmosphere through our curated gallery.
+        </p>
+      </div>
+      <!-- Gallery Filter and Grid inserted here -->
+      <!-- Copy the gallery grid and buttons from the previous message -->
+       <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="gallery-filter active bg-pink-600 text-white px-6 py-2 rounded-full transition-all duration-300" data-filter="all">
+                    All
+                </button>
+                <button class="gallery-filter bg-white text-gray-700 px-6 py-2 rounded-full border border-gray-300 hover:bg-pink-600 hover:text-white transition-all duration-300" data-filter="knotless">
+                    Knotless
+                </button>
+                <button class="gallery-filter bg-white text-gray-700 px-6 py-2 rounded-full border border-gray-300 hover:bg-pink-600 hover:text-white transition-all duration-300" data-filter="up">
+                    Straight-Up
+                </button>
+                <button class="gallery-filter bg-white text-gray-700 px-6 py-2 rounded-full border border-gray-300 hover:bg-pink-600 hover:text-white transition-all duration-300" data-filter="tribal">
+                    Tribal
+                </button>
+                <button class="gallery-filter bg-white text-gray-700 px-6 py-2 rounded-full border border-gray-300 hover:bg-pink-600 hover:text-white transition-all duration-300" data-filter="back">
+                    Straight-back
+                </button>
+                <button class="gallery-filter bg-white text-gray-700 px-6 py-2 rounded-full border border-gray-300 hover:bg-pink-600 hover:text-white transition-all duration-300" data-filter="free">
+                    Freehand
+                </button>
+                <button class="gallery-filter bg-white text-gray-700 px-6 py-2 rounded-full border border-gray-300 hover:bg-pink-600 hover:text-white transition-all duration-300" data-filter="side">
+                    Straight-side
+                </button>
+                <button class="gallery-filter bg-white text-gray-700 px-6 py-2 rounded-full border border-gray-300 hover:bg-pink-600 hover:text-white transition-all duration-300" data-filter="pop">
+                    Curly-pop
+                </button>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="knotless" data-index="0">
+                    <img src="media/knotless.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Knotless</h3>
+                    </div>
+                </div>
+
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="knotless" data-index="0">
+                    <img src="media/knotless1.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Knotless</h3>
+                    </div>
+                </div>
+
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="knotless" data-index="0">
+                    <img src="media/knotless2.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Knotless</h3>
+                    </div>
+                </div>
+
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="knotless" data-index="0">
+                    <img src="media/knotless3.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Knotless</h3>
+                    </div>
+                </div>
+
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="knotless" data-index="0">
+                    <img src="media/knotless4.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Knotless</h3>
+                    </div>
+                </div>
+
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="knotless" data-index="0">
+                    <img src="media/knotless5.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Knotless</h3>
+                    </div>
+                </div>
+
+                
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+
+                
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/bac.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="" data-index="0">
+                    <img src="media/back1.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back2.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back3.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back4.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back5.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back6.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back7.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back8.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-back</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="back" data-index="0">
+                    <img src="media/back9.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3></h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="hair" data-index="0">
+                    <img src="media/boho.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Boho Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="pop" data-index="0">
+                    <img src="media/curly pop.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Curly Pop</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="pop" data-index="0">
+                    <img src="media/curlypo.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Curly Pop</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="pop" data-index="0">
+                    <img src="media/curlypop.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Curly Pop</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="pop" data-index="0">
+                    <img src="media/curly.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Curly pop</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand1.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand2.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand3.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand4.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand5.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand6.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand7.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand8.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand9.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand9.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/freehand10.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="free" data-index="0">
+                    <img src="media/free.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Free Hand</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="side" data-index="0">
+                    <img src="media/side.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight Side</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="side" data-index="0">
+                    <img src="media/side1.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight Side</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="side" data-index="0">
+                    <img src="media/side2.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight Side</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/t.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal1.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal2.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal3.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal4.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal5.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal6.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal7.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal8.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="tribal" data-index="0">
+                    <img src="media/tribal9.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Tribal Braids</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="up" data-index="0">
+                    <img src="media/up.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-Up</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="up" data-index="0">
+                    <img src="media/up1.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-Up</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="up" data-index="0">
+                    <img src="media/up-2.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-Up</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="up" data-index="0">
+                    <img src="media/up3.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-Up</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="up" data-index="0">
+                    <img src="media/up5.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-Up</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="up" data-index="0">
+                    <img src="media/up6.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight-Up</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="up" data-index="0">
+                    <img src="media/up7.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight Up</h3>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-hair bg-white rounded-2xl shadow-lg overflow-hidden h-64 cursor-pointer" data-category="up" data-index="0">
+                    <img src="media/up8.jpeg" alt="Balayage Highlights" class="w-full h-full object-cover" />
+                    <div class="gallery-overlay">
+                        <h3>Straight Up</h3>
+                    </div>
+                </div>            
+    </div>
+  </section>
+
+  <!-- Modal Lightbox -->
+<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <button id="lightbox-prev" class="absolute left-5 text-white text-4xl">&#10094;</button>
+  
+  <img id="lightbox-image" class="max-w-full max-h-full rounded shadow-lg" alt="Expanded Image" />
+
+  <button id="lightbox-next" class="absolute right-5 text-white text-4xl">&#10095;</button>
+</div>
+
+
+  <!-- GALLERY SECTION END -->
+   <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-playfair text-2xl font-bold mb-4">Pelin's Beauty Emporium</h3>
+                    <p class="text-gray-300 mb-4">
+                        Your premier destination for luxury hair and beauty services.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-rose-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-rose-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.675 0h-21.35C.593 0 0 .593 0 1.34V22.66c0 .747.593 1.34 1.34 1.34h11.458V14.73h-3.414v-4.172h3.414V7.545c0-3.375 2.05-5.21 5.078-5.21 1.446 0 2.68.107 3.045.155v3.52h-2.098c-1.657 0-1.975.787-1.975 1.94v2.56h3.91l-.634 4.172h-3.276v9.27H22.675c.747 0 1.34-.593 1.34-1.34V1.34c0-.747-.593-1.34-1.34-1.34z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-rose-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.001 2.004c0 1.503-.997 2.472-1.996 3.018v3.666c.999.398 1.996 1.054 1.996 2.053v3.834c0 .546-.448 1.054-1.002 1.054-.555 0-1.002-.508-1.002-1.054V12.67c0-.546-.448-1.054-1.002-1.054-.555 0-1.002-.508-1.002-1.054V9.664c0-.546-.448-1.054-1.002-1.054-.555 0-1.002-.508-1.002-1.054V6.66c0-.546-.448-1.054-1.002-1.054-.555 0-1.002-.508-1.002-1.054V3.662c0-.546-.448-1.054-1.002-1.054-.555 0-1.002-.508-1.002-1.054v-.008c.5-.06.999-.186 1.498-.372C7.669 1.63 9.422 1.004 12.001 1.004c4.093 0 7.551 2.215 9.099 5.234 1.547 3.018 1.547 6.643 0 9.66c-1.548 3.019-5.006 5.234-9.099 5.234-2.579 0-4.332-.626-6.002-1.637-.5-.187-.999-.313-1.498-.373v-.008c.5-.06.999-.186 1.498-.372 1.67-.626 3.423-1.252 6.002-1.252 4.093 0 7.551-2.215 9.099-5.234C21.55 10.647 21.55 7.022 20.003 4.004c-1.548-3.018-5.006-5.234-9.099-5.234z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-rose-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-rose-400 transition-colors">Freehand</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition-colors">Braids</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition-colors">Curly Pop</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition-colors">Fronta Installation</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition-colors">Hair Wash</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#home" class="hover:text-rose-400 transition-colors">Home</a></li>
+                        <li><a href="#services" class="hover:text-rose-400 transition-colors">Services</a></li>
+                        <li><a href="#gallery" class="hover:text-rose-400 transition-colors">Gallery</a></li>
+                        <li><a href="#about" class="hover:text-rose-400 transition-colors">About</a></li>
+                        <li><a href="#contact" class="hover:text-rose-400 transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition-colors">Book Online</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="https://www.google.com/maps/search/?api=1&query=Shop+10,+Riverside+Mall,+White+River+Road,+Mbombela,+Mpumalanga,+South+Africa">Find Pelin's Beauty Emporium on the Map</a></li>
+                        <li><a href="tel:+27712369444">(+27) 71 236 9444</a></li>
+                        <li><a href="mailto:preciousphiri907@gmail.com">preciousphiri907@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">
+                    &copy; 2025 Luxe Salon. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+   <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white');
+                nav.classList.remove('bg-white/90');
+            } else {
+                nav.classList.add('bg-white/90');
+                nav.classList.remove('bg-white');
+            }
+        });
+
+        const galleryFilters = document.querySelectorAll('.gallery-filter');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove active class from all filters
+                galleryFilters.forEach(f => {
+                    f.classList.remove('active', 'bg-pink-600', 'text-white');
+                    f.classList.add('bg-white', 'text-gray-700');
+                });
+                
+                // Add active class to clicked filter
+                filter.classList.add('active', 'bg-pink-600', 'text-white');
+                filter.classList.remove('bg-white', 'text-gray-700');
+                
+                const filterValue = filter.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 100);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        
+         const galleryItemsArray = Array.from(document.querySelectorAll('.gallery-item'));
+let currentIndex = -1;
+
+function openLightbox(imageSrc, title, index) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+
+    lightboxImage.src = imageSrc;
+    lightboxImage.alt = title;
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    currentIndex = index;
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    currentIndex = -1;
+}
+
+function showImageAt(index) {
+    if (index < 0 || index >= galleryItemsArray.length) return;
+
+    const item = galleryItemsArray[index];
+    const img = item.querySelector('img');
+    const titleEl = item.querySelector('.gallery-overlay h3');
+
+    const imageSrc = img ? img.src : '';
+    const title = titleEl ? titleEl.textContent : 'Gallery Image';
+
+    openLightbox(imageSrc, title, index);
+}
+
+// Click on image
+galleryItemsArray.forEach((item, index) => {
+    item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const titleEl = item.querySelector('.gallery-overlay h3');
+
+        const imageSrc = img ? img.src : '';
+        const title = titleEl ? titleEl.textContent : 'Gallery Image';
+
+        openLightbox(imageSrc, title, index);
+    });
+});
+
+// Navigation buttons
+document.getElementById('lightbox-prev').addEventListener('click', () => {
+    if (currentIndex > 0) showImageAt(currentIndex - 1);
+});
+
+document.getElementById('lightbox-next').addEventListener('click', () => {
+    if (currentIndex < galleryItemsArray.length - 1) showImageAt(currentIndex + 1);
+});
+
+// Close on outside click
+document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+});
+
+// Close on ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+});
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("bookNow").addEventListener("click", function () {
+      window.location.href = "book.html"; // Change to your actual file name
+    });
+  });
+
+    </script>
+
+</body>
+</html>
