@@ -191,7 +191,7 @@
                 <a href="gallery.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-rose-600">Gallery</a>
                 <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-rose-600">About</a>
                 <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-rose-600">Contact</a>
-                <button id="bookNow" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium ml-3 mt-2">Book Now</button>
+                <button id="book_Now" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium ml-3 mt-2">Book Now</button>
             </div>
         </div>
     </nav>
@@ -794,7 +794,7 @@
             }
         });
         document.getElementById('viewMoreBtn').addEventListener('click', function () {
-            window.location.href = "gallery.html"; // Change to your actual gallery page path
+            window.location.href = "gallery.html"; 
         });
         document.getElementById('viewServices').addEventListener('click', function () {
             document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
@@ -804,7 +804,12 @@
         });
         document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("bookNow").addEventListener("click", function () {
-      window.location.href = "book.html"; // Change to your actual file name
+      window.location.href = "book.html";
+    });
+  });
+        document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("book_Now").addEventListener("click", function () {
+      window.location.href = "book.html"; 
     });
   });
 
